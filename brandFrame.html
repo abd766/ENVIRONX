@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<link
+			rel="icon"
+			type="image/x-icon"
+			href="./favicon.ico"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			href="favicon-32x32.png"
+			sizes="32x32"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			href="favicon-16x16.png"
+			sizes="16x16"
+		/>
+		<title>EnviroX</title>
+		<link
+			rel="stylesheet"
+			href="./css/styleStart.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="./css/continueButton.css"
+		/>
+	</head>
+	<body>
+		<!-- <audio
+			id="entrySound"
+			src="https://s3.amazonaws.com/files.uploads.lastmileai.com/uploads/cltsxnuvr025tquys61gwaz7i/2024_3_16_6_27_59/8291/EngagewithourAIdrivenLLMLargeLanguageMode.mp3"
+			preload="auto"
+		></audio> -->
+		<div class="nav">
+			<nav>
+				<a href="/">
+					<img
+						src="./assets/logoGreenFootPrint.svg"
+						alt="Green FootPrint logo"
+					/>
+				</a>
+			</nav>
+		</div>
+		<div class="container">
+			<div class="absolutePosition">
+				<a href="./recycleFrame.html">
+					<button class="animated-button">
+						<svg
+							viewBox="0 0 24 24"
+							class="arr-2"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+							></path>
+						</svg>
+						<span class="text">Continue</span>
+						<span class="circle"></span>
+						<svg
+							viewBox="0 0 24 24"
+							class="arr-1"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+							></path>
+						</svg>
+					</button>
+				</a>
+			</div>
+			<div class="framecontainer">
+				<iframe
+					src="https://sustainablebrands.streamlit.app/?embed=true"
+					frameborder="0"
+				></iframe>
+			</div>
+		</div>
+		<section class="footer">
+			<footer>
+				<img
+					src="./assets/footer.svg"
+					alt="Footer Image"
+				/>
+			</footer>
+		</section>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script>
+			$(document).ready(function () {
+				var entrySound = $("#entrySound")[0]; // Get the native audio element for entry sound
+
+				// Attempt to play the entry sound on page load
+				entrySound.play().catch(function (error) {
+					console.error(
+						"Playback prevented due to browser restrictions. User must interact with the document.",
+						error
+					);
+				});
+			});
+		</script>
+	</body>
+</html>

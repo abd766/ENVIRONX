@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Pollution Visualizer</title>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/purecss@2.1.0/build/base-min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/purecss@2.1.0/build/grids-min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/purecss@2.1.0/build/grids-responsive-min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="./css/pollution.css"
+		/>
+	</head>
+
+	<body style="overflow: hidden">
+		<div id="particles-js"></div>
+
+		<div class="overlay glass">
+			<h1 style="margin-bottom: 0; margin-top: 0">Take a deep breath.</h1>
+			<p style="margin-top: 0; margin-bottom: 1em">
+				Enter your location to see a particle visualization of air
+				pollutant concentration in μg/m<sup>3</sup>:
+			</p>
+			<!-- <div class="pure-g" style="margin-top: 0; margin-bottom: 0">
+            <div class="pure-u-1"> -->
+			<label for="cityInput">City/country name:</label>
+			<form class="form">
+				<input
+					style="max-width: 40%"
+					type="text"
+					class="location__field"
+					id="cityInput"
+					placeholder="Your Location"
+				/>
+				<button
+					type="button"
+					class="update-btn btn--primary btn--inside uppercase"
+					id="fetchAndSetParticles"
+					style="margin-top: 1em"
+				>
+					Update
+				</button>
+			</form>
+
+			<div
+				class="pure-g"
+				style="
+					margin-top: 0;
+					margin-bottom: 0;
+					font-weight: bold;
+					padding: 0;
+				"
+			>
+				<div class="pure-u-1">
+					<p id="particleCountLabel"></p>
+				</div>
+			</div>
+			<hr style="opacity: 50%; margin-top: 1em" />
+			<p style="margin-bottom: 0; opacity: 80%">
+				Data from the
+				<a
+					href="https://openweathermap.org/api/air-pollution"
+					style="
+						text-decoration: none;
+						color: #ea6e50;
+						font-weight: bold;
+						opacity: 100%;
+					"
+					>OpenWeatherMap API</a
+				>
+				<img
+					style="
+						height: 1.2em;
+						padding: 0;
+						margin: auto;
+						opacity: 100%;
+					"
+					src="./assets/emoji/tree.png"
+				/>
+			</p>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+		<script src="./js/pollution.js"></script>
+		<script>
+			document.addEventListener("DOMContentLoaded", (event) => {
+				// Use querySelector to select the button using its class
+				var updateButton = document.querySelector(
+					".update-btn.btn--primary.btn--inside.uppercase"
+				);
+
+				// Define the function to be called when the button is clicked
+				updateButton.addEventListener("click", function () {
+					// Use querySelector to get the value from the input with class 'location__field'
+					var locationValue = document
+						.querySelector(".location__field")
+						.value.trim();
+
+					// Only proceed with non-empty location value
+					if (locationValue) {
+						// Retrieve the existing JSON object from local storage
+						var userDataJSON = localStorage.getItem("userData");
+
+						// Check if userData is not null, if it is, create an empty object
+						var userData = userDataJSON
+							? JSON.parse(userDataJSON)
+							: {};
+
+						// Add or update the location key with the new value
+						userData.location = locationValue;
+
+						// Convert the updated object back to a JSON string
+						var updatedUserDataJSON = JSON.stringify(userData);
+
+						// Save the updated JSON back to local storage
+						localStorage.setItem("userData", updatedUserDataJSON);
+
+						// Optionally, redirect to another page or indicate success
+						console.log(
+							"Location has been updated in local storage."
+						);
+					} else {
+						// Optionally, indicate that the input field is empty
+						console.log("No location entered.");
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
